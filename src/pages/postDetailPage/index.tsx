@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from 'react-query'
 
@@ -17,6 +17,11 @@ const PostDetailPage = () => {
     queryKey: ['post', postId],
     queryFn: () => fetchPostById(postId ?? '-1'),
   })
+
+  // Tab title
+  useEffect(() => {
+    document.title = `Post: ${data?.title.substring(0, 10)}`
+  }, [data])
 
   if (isLoading) {
     return <S.Loader />

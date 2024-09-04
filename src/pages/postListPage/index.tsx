@@ -30,9 +30,14 @@ const PostListPage = () => {
   }
 
   return (
-    <S.PostList>
-      {data?.map((post) => <Post post={post} key={post.id} errorHandler={() => setShowError(true)} />)}
-    </S.PostList>
+    <>
+      <S.TitleWrapper>
+        <S.Title>Posts</S.Title>
+      </S.TitleWrapper>
+      <S.PostList>
+        {data?.map((post) => <Post post={post} key={post.id} errorHandler={() => setShowError(true)} />)}
+      </S.PostList>
+    </>
   )
 }
 
