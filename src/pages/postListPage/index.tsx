@@ -16,7 +16,7 @@ const PostListPage = () => {
   if (isLoading) return <div>Loading</div>
   if (error) return <div>Error during data loading</div>
 
-  return <S.PostList>{data?.map((post) => <Post post={post} />)}</S.PostList>
+  return <S.PostList>{data?.map((post) => <Post post={post} key={post.id} />)}</S.PostList>
 }
 
 export default PostListPage

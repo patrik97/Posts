@@ -1,19 +1,20 @@
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from '../../../styles/media'
+import { COLORS } from '../../../styles/colors'
 
 export const PostWrapper = styled(Link)`
   padding: 20px;
   display: flex;
   flex-direction: row;
-  background-color: #f5ebeb;
+  background-color: ${COLORS.primary};
   justify-content: space-between;
   max-width: 450px;
   color: black;
   text-decoration: none;
 
   &:hover {
-    background-color: #7a0c04;
+    background-color: ${COLORS.secondary};
     color: white;
 
     .arrow {
@@ -42,6 +43,7 @@ export const TitleAndAuthor = styled.div`
 export const Title = styled.h2`
   margin: 0;
   font-size: 20px;
+  text-transform: capitalize;
 
   ${media.maxSm`
     font-size: 16px;  

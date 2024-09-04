@@ -1,9 +1,13 @@
 import styled from 'styled-components'
+import { media } from '../../../styles/media'
 
 export const PostBodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 45%;
+
+  ${media.md`
+    width: 45%;
+  `}
 `
 
 export const Title = styled.h1`
