@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from '../../../styles/media'
 import { COLORS } from '../../../styles/colors'
-import { Alert, Skeleton } from '@mui/material'
+import { Skeleton } from '@mui/material'
 
 export const PostWrapper = styled(Link)`
   padding: 20px;
@@ -14,17 +14,19 @@ export const PostWrapper = styled(Link)`
   color: black;
   text-decoration: none;
 
-  &:hover {
-    background-color: ${COLORS.secondary};
-    color: white;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: ${COLORS.secondary};
+      color: white;
 
-    .arrow {
-      transform: scale(2);
-      transition: transform 1s ease;
-    }
+      .arrow {
+        transform: scale(2);
+        transition: transform 1s ease;
+      }
 
-    .title {
-      text-decoration: underline;
+      .title {
+        text-decoration: underline;
+      }
     }
   }
 `
