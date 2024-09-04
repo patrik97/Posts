@@ -1,8 +1,7 @@
-import ReactDOM from 'react-dom'
 import { Route, Routes } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import PostList from './components/postList'
-import PostDetailPage from './pages/PostDetailPage'
+import PostListPage from './pages/postListPage'
+import PostDetailPage from './pages/postDetailPage'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,7 +17,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Routes>
-        <Route path='/' element={<PostList />} />
+        <Route path='/' element={<PostListPage />} />
         <Route path='/:articleId' element={<PostDetailPage />} />
       </Routes>
     </QueryClientProvider>

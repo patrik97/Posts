@@ -1,21 +1,13 @@
 import React from 'react'
 import { useQuery } from 'react-query'
 
-import { Endpoints } from '../../endpoints'
 import { IPost } from '../../interfaces/post'
-
-import * as S from './styled'
+import { fetchPosts } from '../../utils/apiCalls'
 import Post from './post'
 
-const fetchPosts = async (): Promise<IPost[]> => {
-  const response = await fetch(Endpoints.posts)
-  if (!response.ok) {
-    throw new Error()
-  }
-  return response.json()
-}
+import * as S from './styled'
 
-const PostList = () => {
+const PostListPage = () => {
   const { data, isLoading, error } = useQuery<IPost[]>({
     queryKey: ['posts'],
     queryFn: fetchPosts,
@@ -27,4 +19,4 @@ const PostList = () => {
   return <S.PostList>{data?.map((post) => <Post post={post} />)}</S.PostList>
 }
 
-export default PostList
+export default PostListPage

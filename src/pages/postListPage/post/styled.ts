@@ -1,22 +1,28 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { media } from '../../../styles/media'
 
-export const PostWrapper = styled.div`
+export const PostWrapper = styled(Link)`
   padding: 20px;
   display: flex;
   flex-direction: row;
   background-color: #f5ebeb;
   justify-content: space-between;
   max-width: 450px;
+  color: black;
+  text-decoration: none;
 
   &:hover {
     background-color: #7a0c04;
     color: white;
-    cursor: pointer;
 
     .arrow {
       transform: scale(2);
       transition: transform 1s ease;
+    }
+
+    .title {
+      text-decoration: underline;
     }
   }
 `
