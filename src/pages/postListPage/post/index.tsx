@@ -6,19 +6,45 @@ import { fetchCommentsByPostId, fetchUserById } from '../../../utils/apiCalls'
 
 import * as S from './styled'
 
-type PostProps = {
-  post: IPost
+export const PostSkeleton = () => {
+  return (
+    <S.PostWrapperSkeleton>
+      <S.Post>
+        <S.TitleAndAuthor>
+          <S.ResponsivnessSkeleton height='40px' />
+          <S.ResponsivnessSkeleton height='28px' />
+        </S.TitleAndAuthor>
+        <S.TextAndComments>
+          <S.ResponsivnessSkeleton height='64px' />
+          <S.ResponsivnessSkeleton height='28px' />
+        </S.TextAndComments>
+      </S.Post>
+      <ArrowForwardIosIcon className='arrow' />
+    </S.PostWrapperSkeleton>
+  )
 }
 
-const Post: React.FC<PostProps> = ({ post }) => {
+type PostProps = {
+  post: IPost
+  errorHandler: () => void
+}
+
+const Post: React.FC<PostProps> = ({ post, errorHandler }) => {
   const [user, comments] = useQueries([
     { queryKey: ['user', post.userId], queryFn: () => fetchUserById(post.userId.toString()) },
     { queryKey: ['comment', post.id], queryFn: () => fetchCommentsByPostId(post.id.toString()) },
   ])
 
   const isLoading = user.isLoading || comments.isLoading
+  const error = user.error || comments.error
 
-  if (isLoading) return <div>Loading</div>
+  if (isLoading) {
+    return <PostSkeleton />
+  }
+
+  if (error) {
+    errorHandler()
+  }
 
   return (
     <S.PostWrapper to={`/${post.id}`}>

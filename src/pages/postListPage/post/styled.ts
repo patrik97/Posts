@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { media } from '../../../styles/media'
 import { COLORS } from '../../../styles/colors'
+import { Alert, Skeleton } from '@mui/material'
 
 export const PostWrapper = styled(Link)`
   padding: 20px;
@@ -28,11 +29,21 @@ export const PostWrapper = styled(Link)`
   }
 `
 
+export const PostWrapperSkeleton = styled.div`
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  background-color: ${COLORS.primary};
+  justify-content: space-between;
+  max-width: 450px;
+`
+
 export const Post = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
 `
 
 export const TitleAndAuthor = styled.div`
@@ -70,4 +81,13 @@ export const Comments = styled.p`
   margin: 0;
   font-style: italic;
   font-size: 14px;
+`
+
+export const ResponsivnessSkeleton = styled(Skeleton)<{ height: string }>`
+  width: 350px;
+  height: ${({ height }) => height};
+
+  ${media.maxMd`
+    width: 80%;  
+  `}
 `

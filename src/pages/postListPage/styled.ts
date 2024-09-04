@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { media } from '../../styles/media'
+import { Alert } from '@mui/material'
 
 export const PostList = styled.div`
   margin: 0;
@@ -15,4 +16,8 @@ export const PostList = styled.div`
       grid-template-columns: repeat(auto-fill, 90vw);
       grid-gap: 20px;
   `}
+`
+
+export const ErrorBanner = styled(Alert)`
+  margin: 20px 5%;
 `
