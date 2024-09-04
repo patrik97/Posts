@@ -8,9 +8,10 @@ import Skeleton from '../../../components/skeleton'
 
 type PostBodyProps = {
   post: IPost
+  errorHandler: () => void
 }
 
-const PostBody: React.FC<PostBodyProps> = ({ post }) => {
+const PostBody: React.FC<PostBodyProps> = ({ post, errorHandler }) => {
   const {
     data: user,
     isLoading,
@@ -19,6 +20,10 @@ const PostBody: React.FC<PostBodyProps> = ({ post }) => {
     queryKey: ['user', post.userId],
     queryFn: () => fetchUserById(post.userId.toString()),
   })
+
+  if (error) {
+    errorHandler()
+  }
 
   return (
     <S.PostBodyWrapper>

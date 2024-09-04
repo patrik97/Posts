@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { media } from '../../../styles/media'
+import Alert from '@mui/material/Alert'
 
 export const CommentsWrapper = styled.div`
   display: flex;

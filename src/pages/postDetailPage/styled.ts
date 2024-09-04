@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { CircularProgress } from '@mui/material'
+import { Alert } from '@mui/material'
 import { media } from '../../styles/media'
 
 export const PostDetailWrapper = styled.div`
@@ -19,4 +20,8 @@ export const Loader = styled(CircularProgress)`
   position: absolute;
   top: 50%;
   left: 50%;
+`
+
+export const ErrorBanner = styled(Alert)`
+  margin: 20px 5%;
 `

@@ -9,13 +9,18 @@ import Comment from './comment'
 
 type CommentsProps = {
   postId: string
+  errorHandler: () => void
 }
 
-const PostComments: React.FC<CommentsProps> = ({ postId }) => {
+const PostComments: React.FC<CommentsProps> = ({ postId, errorHandler }) => {
   const { data, isLoading, error } = useQuery<IComment[]>({
     queryKey: ['comment', postId],
     queryFn: () => fetchCommentsByPostId(postId),
   })
+
+  if (error) {
+    errorHandler()
+  }
 
   return (
     <S.CommentsWrapper>
