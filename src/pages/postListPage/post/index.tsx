@@ -6,10 +6,14 @@ import { fetchCommentsByPostId, fetchUserById } from '../../../utils/apiCalls'
 
 import * as S from './styled'
 
-const Post = (props: { post: IPost }) => {
+type PostProps = {
+  post: IPost
+}
+
+const Post: React.FC<PostProps> = ({ post }) => {
   const [user, comments] = useQueries([
-    { queryKey: ['user', 1], queryFn: () => fetchUserById(props.post.userId) },
-    { queryKey: ['comments', 2], queryFn: () => fetchCommentsByPostId(props.post.id) },
+    { queryKey: ['user', post.userId], queryFn: () => fetchUserById(post.userId.toString()) },
+    { queryKey: ['comment', post.id], queryFn: () => fetchCommentsByPostId(post.id.toString()) },
   ])
 
   const isLoading = user.isLoading || comments.isLoading
@@ -17,14 +21,14 @@ const Post = (props: { post: IPost }) => {
   if (isLoading) return <div>Loading</div>
 
   return (
-    <S.PostWrapper to={`/${props.post.id}`}>
+    <S.PostWrapper to={`/${post.id}`}>
       <S.Post>
         <S.TitleAndAuthor>
-          <S.Title className='title'>{props.post.title}</S.Title>
+          <S.Title className='title'>{post.title}</S.Title>
           <S.AuthorName>{user.data?.name}</S.AuthorName>
         </S.TitleAndAuthor>
         <S.TextAndComments>
-          <S.Text>{props.post.body.substring(0, 60)} ...</S.Text>
+          <S.Text>{post.body.substring(0, 60)} ...</S.Text>
           <S.Comments>Comments ({comments.data?.length ?? 0})</S.Comments>
         </S.TextAndComments>
       </S.Post>

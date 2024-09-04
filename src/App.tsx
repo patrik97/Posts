@@ -18,7 +18,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Routes>
         <Route path='/' element={<PostListPage />} />
-        <Route path='/:articleId' element={<PostDetailPage />} />
+        <Route path='/:postId' element={<PostDetailPage />} />
       </Routes>
     </QueryClientProvider>
   )
