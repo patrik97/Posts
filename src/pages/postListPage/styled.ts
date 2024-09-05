@@ -35,3 +35,8 @@ export const Title = styled.h1`
   letter-spacing: 6px;
   font-size: 45px;
 `
+
+export const Observer = styled.div`
+  height: 20px;
+  margin-bottom: 20px;
+`
