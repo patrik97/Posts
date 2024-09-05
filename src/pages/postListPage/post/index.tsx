@@ -2,7 +2,7 @@ import { useQueries } from 'react-query'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
 import { IPost } from '../../../interfaces/post'
-import { fetchCommentsByPostId, fetchUserById } from '../../../utils/apiCalls'
+import { fetchComments, fetchCommentsByPostId, fetchUserById, fetchUsers } from '../../../utils/apiCalls'
 
 import * as S from './styled'
 
@@ -31,8 +31,8 @@ type PostProps = {
 
 const Post: React.FC<PostProps> = ({ post, errorHandler }) => {
   const [user, comments] = useQueries([
-    { queryKey: ['user', post.userId], queryFn: () => fetchUserById(post.userId.toString()) },
-    { queryKey: ['comment', post.id], queryFn: () => fetchCommentsByPostId(post.id.toString()) },
+    { queryKey: ['users'], queryFn: fetchUsers },
+    { queryKey: ['comments'], queryFn: fetchComments },
   ])
 
   const isLoading = user.isLoading || comments.isLoading
@@ -51,11 +51,13 @@ const Post: React.FC<PostProps> = ({ post, errorHandler }) => {
       <S.Post>
         <S.TitleAndAuthor>
           <S.Title className='title'>{post.title}</S.Title>
-          <S.AuthorName>{user.data?.name}</S.AuthorName>
+          <S.AuthorName>{user.data?.find((user) => user.id === post.userId)?.name}</S.AuthorName>
         </S.TitleAndAuthor>
         <S.TextAndComments>
           <S.Text>{post.body.substring(0, 60)} ...</S.Text>
-          <S.Comments>Comments ({comments.data?.length ?? 0})</S.Comments>
+          <S.Comments>
+            Comments ({comments.data?.filter((comment) => comment.postId === post.id).length ?? 0})
+          </S.Comments>
         </S.TextAndComments>
       </S.Post>
       <ArrowForwardIosIcon className='arrow' />

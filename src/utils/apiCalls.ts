@@ -10,7 +10,7 @@ export const fetchPosts = async (): Promise<IPost[]> => {
     throw new Error()
   }
 
-  return response.json()
+  return await response.json()
 }
 
 export const fetchPostById = async (postId: string): Promise<IPost> => {
@@ -20,7 +20,17 @@ export const fetchPostById = async (postId: string): Promise<IPost> => {
     throw new Error()
   }
 
-  return response.json()
+  return await response.json()
+}
+
+export const fetchUsers = async (): Promise<IUser[]> => {
+  const response = await fetch(Endpoints.users)
+
+  if (!response.ok) {
+    throw new Error()
+  }
+
+  return await response.json()
 }
 
 export const fetchUserById = async (userId: string): Promise<IUser> => {
@@ -30,7 +40,17 @@ export const fetchUserById = async (userId: string): Promise<IUser> => {
     throw new Error()
   }
 
-  return response.json()
+  return await response.json()
+}
+
+export const fetchComments = async (): Promise<IComment[]> => {
+  const response = await fetch(Endpoints.comments)
+
+  if (!response.ok) {
+    throw new Error()
+  }
+
+  return await response.json()
 }
 
 export const fetchCommentsByPostId = async (postId: string): Promise<IComment[]> => {
@@ -40,5 +60,5 @@ export const fetchCommentsByPostId = async (postId: string): Promise<IComment[]>
     throw new Error()
   }
 
-  return response.json()
+  return await response.json()
 }
