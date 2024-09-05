@@ -2,7 +2,7 @@ import { useQueries } from 'react-query'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
 import { IPost } from '../../../interfaces/post'
-import { fetchComments, fetchCommentsByPostId, fetchUserById, fetchUsers } from '../../../utils/apiCalls'
+import { fetchComments, fetchUsers } from '../../../utils/apiCalls'
 
 import * as S from './styled'
 
